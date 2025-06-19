@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>個人留言查詢系統</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 100px; }
+    input, button { padding: 10px; font-size: 16px; margin: 5px; }
+    #result { margin-top: 20px; font-size: 18px; color: #333; }
+  </style>
+</head>
+<body>
+  <h2>🔐 請輸入你的密碼查詢留言</h2>
+  <input type="text" id="pwd" placeholder="輸入你的密碼">
+  <button onclick="check()">查詢</button>
+
+  <p id="result"></p>
+
+  <script>
+    function check() {
+      const pwd = document.getElementById("pwd").value.trim();
+      const resultArea = document.getElementById("result");
+      if (!pwd) {
+        resultArea.innerText = \"請先輸入密碼\";
+        return;
+      }
+
+      fetch(\"https://script.google.com/macros/s/AKfycbxO5Lm5P5O9t-NYSIxZT60eR1QtVT2L8YcgL3S2rikOINy49s21KwSPHCO0Z59cpueG/exec?pwd=\" + encodeURIComponent(pwd))
+        .then(res => res.text())
+        .then(text => {
+          resultArea.innerText = text;
+        })
+        .catch(() => {
+          resultArea.innerText = \"⚠️ 查詢失敗，請稍後再試\";
+        });
+    }
+  </script>
+</body>
+</html>
