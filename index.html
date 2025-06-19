@@ -20,18 +20,19 @@
     function check() {
       const pwd = document.getElementById("pwd").value.trim();
       const resultArea = document.getElementById("result");
+
       if (!pwd) {
-        resultArea.innerText = \"請先輸入密碼\";
+        resultArea.innerText = "請先輸入密碼";
         return;
       }
 
-      fetch(\"https://script.google.com/macros/s/AKfycbxO5Lm5P5O9t-NYSIxZT60eR1QtVT2L8YcgL3S2rikOINy49s21KwSPHCO0Z59cpueG/exec?pwd=\" + encodeURIComponent(pwd))
+      fetch("https://script.google.com/macros/s/AKfycbxO5Lm5P5O9t-NYSIxZT60eR1QtVT2L8YcgL3S2rikOINy49s21KwSPHCO0Z59cpueG/exec?pwd=" + encodeURIComponent(pwd))
         .then(res => res.text())
         .then(text => {
           resultArea.innerText = text;
         })
         .catch(() => {
-          resultArea.innerText = \"⚠️ 查詢失敗，請稍後再試\";
+          resultArea.innerText = "⚠️ 查詢失敗，請稍後再試";
         });
     }
   </script>
